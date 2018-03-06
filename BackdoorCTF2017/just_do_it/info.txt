@@ -1,0 +1,9 @@
+250
+
+JUST-DO-IT
+
+h3rcul35 was in a hurry to finish making challenges so he made a simple one. He says its a baby challenge, can you pwn it?
+
+nc 163.172.176.29 9036
+libc.so.6
+32_chal 

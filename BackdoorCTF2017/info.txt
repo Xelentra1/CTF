@@ -1,0 +1,11 @@
+BABY-0x41414141
+
+h3rcul35 was giving a lecture on writing secure codes. A n00b refused to accept the statement by h3rcul35, "NEVER EVER TRUST THE USER". The n00b gave him a binary and said its secure. h3rcul35 solved it within a few minutes. If you believe what h3rcul35 said is correct then get the flag.
+
+32_new
+
+nc 163.172.176.29 9035
+
+Created by: h3rcul35
+
+No. of Correct Submissions: 38
