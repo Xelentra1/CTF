@@ -1,0 +1,18 @@
+Meta 1
+250
+
+We know how to program and our flags are for geniuses.
+
+nc 159.203.38.169 5685
+meta
+
+
+Meta 2
+100
+
+We are so 1337 we forgot to include the second flag in the binary. Can you read it where it is?
+
+nc 159.203.38.169 5685
+
+
+
