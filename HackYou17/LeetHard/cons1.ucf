@@ -1,0 +1,22 @@
+
+NET "clk" LOC = "B8";
+
+NET "an0" LOC = "F17";
+NET "an1" LOC = "H17";
+NET "an2" LOC = "C18";
+NET "an3" LOC = "F15";
+
+NET "CA" LOC = "L18";
+NET "CB" LOC = "F18";
+NET "CC" LOC = "D17";
+NET "CD" LOC = "D16";
+NET "CE" LOC = "G14";
+NET "CF" LOC = "J17";
+NET "CG" LOC = "H14";
+NET "DP" LOC = "C17";
+
+NET "BTN0" LOC = "B18";
+NET "BTN1" LOC = "D18";
+NET "BTN2" LOC = "E18";
+NET "BTN3" LOC = "H13";
+NET "LD0"	LOC = "J14";
