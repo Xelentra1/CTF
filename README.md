@@ -1,1 +1,1 @@
-This repository contains my solutions to some CTF tasks, mostly from PWN category.
+This repository contains my solutions for some CTF tasks, mostly from PWN category.
