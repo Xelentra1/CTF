@@ -1,6 +1,8 @@
 # double_easy
 This is simple but yet in my opinion fun enough task.
 
+![](/images/random_tasks/double_easy/08.png)
+
 At the begging we see mmap is getting called. It creates rwxp mapping. User input getting placed at 0x7ffff7ff6000. 
 
 ![](/images/random_tasks/double_easy/01.png)
