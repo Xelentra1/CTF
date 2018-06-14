@@ -7,7 +7,7 @@ At the begging called nmap. It creates rwxp mapping. User input getting placed a
 
 ![](/images/random_tasks/double_easy/02.png)
 
-At the end most registers getting xord and we jmp into rax .
+At the end most registers getting xord and we jmp to address from rax.
 
 ![](/images/random_tasks/double_easy/03.png)
 
