@@ -29,6 +29,7 @@ So I tried it but in gdb I noticed that value at 0x7ffff7ff6800 was changed to e
 e12f000008002d48 = -1.36197587672142222344748023572E160
 
 This worked.
+
 ![](/images/random_tasks/double_easy/04.png)
 
 I used following shellcode:
