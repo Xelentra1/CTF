@@ -5,12 +5,15 @@ This is ARM ROP task.
 
 For comfortable debugging I was using Azeria-Lab-v1 VM from https://azeria-labs.com/arm-lab-vm/
 
+
 Vulnerability is in store function - no check for max slot value, slots array size = 12 => overflow. 
 
 slots[13] = bp (frame pointer, analogue of ebp) 
+
 slots[14] = pc (program counter, analogue of eip)
 
 Same vulnerability in read_store function => can leak, but ASLR was off, so leak was not needed.
+
 
 On ARM syscall execve got following structure:
 
