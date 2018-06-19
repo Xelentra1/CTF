@@ -36,8 +36,10 @@ Using ROPgadget I found required gadgets to make syscall execve("/bin/sh", 0, 0)
 
 There was no "pop {r2, pc}" gadget, so I used:
 
+```
 pop {r0, r4, pc}
 mov r2, r4 ; blx r3
+```
 
 "blx r3" instruction will brunch at an address specified by a register r3 (analogue of call).
 
